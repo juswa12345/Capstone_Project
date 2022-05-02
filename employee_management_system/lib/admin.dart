@@ -251,7 +251,7 @@ void editAdminAccounts(){
         String uname = stdin.readLineSync()!;
         for(int j = 0; j < admin.adminAccount.length; j++){
           (admin.adminAccount[j].keys.elementAt(0) == uname) ?
-            print('username already existed!') : print('username accepted!');
+            print('username already existed!') : '';
         }
         print('enter username for this Admin: ');
         String pass = stdin.readLineSync()!;
