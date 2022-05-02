@@ -30,6 +30,8 @@ class Admin extends Person{
 
 }
 
+final admin = Admin();
+
 void interfeceAddEmployee(){
   final emp = Admin();
   print('-----------ADD EMPLOYEE-----------');
@@ -53,18 +55,22 @@ void interfeceAddEmployee(){
     print('[$index] ${dpt}');
     index+=1;
   });
-  dept = int.parse(stdin.readLineSync()!);
+  do {
+    dept = int.parse(stdin.readLineSync()!);
+    (dept > salary.departments.length) ? print('NOT IN THE CHOICES') : '';
+  } while(dept > salary.departments.length);
   print('Select Position: ');
   index = 1;
   salary.positions[dept - 1].forEach((pos, sal) {
     print('[$index] $pos');
     index+=1;
   });
-  position = int.parse(stdin.readLineSync()!);
+  do {
+    position = int.parse(stdin.readLineSync()!);
+    (position > salary.positions[dept - 1].length) ? print('NOT IN THE CHOICES') : '';
+  } while(position > salary.positions[dept - 1].length);
   emp.setStrings(fName, lName,  salary.departments[dept - 1], salary.positions[dept - 1].keys.elementAt(position - 1), address,  gender, birthday, email, contactNum, status, lvlOfAccess);
   employee.add(emp);
-  // final document = XmlDocument.parse(employee.toString());
-  // print(document);
 }
 
 void interfaceDeleteEmployee(){
@@ -243,9 +249,12 @@ void editAdminAccounts(){
         employee[i].levelOfAccess = 'ADMIN';
         print('enter username for this Admin: ');
         String uname = stdin.readLineSync()!;
+        for(int j = 0; j < admin.adminAccount.length; j++){
+          (admin.adminAccount[j].keys.elementAt(0) == uname) ?
+            print('username already existed!') : print('username accepted!');
+        }
         print('enter username for this Admin: ');
         String pass = stdin.readLineSync()!;
-        final admin = Admin();
         admin.adminAccount.add({'username' : uname, 'password' : pass, 'email' : name});
         print('Successfully added to Admin');
       }
