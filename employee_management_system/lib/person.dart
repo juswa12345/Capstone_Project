@@ -10,10 +10,12 @@ class Person{
   String? contactNumber;
   String? status;
   String? levelOfAccess;
+  double leave = 30;
+  double requestedLeave = 0;
 
   @override
   String toString() {
-    return 'firstName: $firstName,'
+    return '{firstName: $firstName,'
         ' lastName: $lastName,'
         ' department: $department,'
         ' position: $position,'
@@ -23,7 +25,9 @@ class Person{
         'email: $email, '
         'contactNumber: $contactNumber,'
         'status: $status, '
-        'levelOfAccess: $levelOfAccess}';
+        'levelOfAccess: $levelOfAccess'
+        'leave: $leave'
+        'requestedLeave: $requestedLeave}';
   }
   @override
   setStrings(

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:employee_management_system/person.dart';
 import 'package:employee_management_system/interface.dart';
 import 'package:employee_management_system/salary.dart';
+import 'package:employee_management_system/employee.dart';
 
 class Admin extends Person{
 
@@ -140,6 +141,23 @@ void interfaceViewEmployee(){
         print('CONTACT NO.: ${employee[i].contactNumber}');
         print('BIRTHDAY: ${employee[i].birthday}');
         print('ADDRESS: ${employee[i].address}');
+        print('LEAVE/S: ${employee[i].leave}');
+        if(employee[i].requestedLeave > 0){
+          print('Pending Request for Leave: ${employee[i].requestedLeave}');
+          print('Do you want to Aprroved Request for Leave?[Y]es or [N]o');
+          String choice = stdin.readLineSync()!.toUpperCase();
+          if (choice == 'Y') {
+            emp.approveLeave = true;
+            employee[i].leave = employee[i].leave - employee[i].requestedLeave;
+            employee[i].requestedLeave = 0;
+          } else if (choice == 'N')  {
+            emp.approveLeave = false;
+            employee[i].requestedLeave = 0;
+            emp.declineLeave = true;
+          } else {
+            print('not in the choices');
+          }
+        }
         print('-----------------------------------------');
       }
     }

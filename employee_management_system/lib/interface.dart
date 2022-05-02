@@ -4,6 +4,7 @@ import 'package:employee_management_system/person.dart';
 import 'package:employee_management_system/account.dart';
 import 'package:employee_management_system/salary.dart';
 import 'package:xml/xml.dart';
+import 'package:employee_management_system/employee.dart';
 
 List<Account> accounts = List.empty(growable: true);
 List<Admin> employee = List.empty(growable: true);
@@ -100,6 +101,7 @@ void interfaceLogin(String container){
             print('LOGGING IN AS ${accounts[i].fullName}!');
             tries = 0;
             success = true;
+            employeeLogin(accounts[i].email);
           }
         }
       } else {
@@ -129,8 +131,10 @@ void interfaceRegister(){
           isExisted = false;
         }
       }
+    } else {
+      isExisted = false;
     }
-  } while (isExisted);
+  } while (isExisted == true);
   print('Enter Username: ');
   isExisted = true;
   do {
@@ -143,6 +147,8 @@ void interfaceRegister(){
           isExisted = false;
         }
       }
+    } else {
+      isExisted = false;
     }
   } while (isExisted);
   print('Enter Password: ');
@@ -154,7 +160,6 @@ void interfaceRegister(){
         create.createAccount(
             regUsername, regPassword, '$fName $lName', regEmail);
         accounts.add(create);
-        print(accounts);
       } else {
         print('Email not found on the Data base!');
       }
@@ -217,6 +222,25 @@ void adminMainInterface(String container){
     (choice == 'A') ?
     (container == 'ADMIN') ? adminManageInterface() : superAdminInterface()
         : (choice == 'B') ? interfaceManageSalary() : print('');
+  }while (choice != 'Q');
+}
+
+void employeeLogin(String? email){
+  String choice;
+  do {
+    print('-------------------------');
+    print('|    [A] Add Leave       |');
+    print('-------------------------');
+    print('|  [B] Edit Information  |');
+    print('-------------------------');
+    print('|     [C] View Info      |');
+    print('-------------------------');
+    print('|       [Q] Logout       |');
+    print('-------------------------');
+    choice = stdin.readLineSync()!.toUpperCase();
+    (choice == 'A') ? requestLeave(email)
+        : (choice == 'B') ? editEmployeeInformation(email)
+        : (choice == 'C') ? viewEmployee(email) : print('');
   }while (choice != 'Q');
 }
 
