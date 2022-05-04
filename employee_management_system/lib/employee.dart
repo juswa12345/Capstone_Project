@@ -101,6 +101,7 @@ void requestLeave(String? email){
           employee[i].requestedLeave = leaveRequest;
           print('Specify Reason: ');
           String request = stdin.readLineSync()!;
+          employee[i].request = request;
           print('Request under Pending for Admin Aprroval');
         }else {
           print('Cannot Exceed the Max allowed Leave');
