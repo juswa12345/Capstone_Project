@@ -95,12 +95,14 @@ void interfaceLogin(String container){
     } else {
       if (accounts.isNotEmpty) {
         for (int i = 0; i < accounts.length; i++) {
-          if (username == accounts[i].username &&
-              password == accounts[i].password) {
-            print('LOGGING IN AS ${accounts[i].fullName}!');
-            tries = 0;
-            success = true;
-            employeeLogin(accounts[i].email);
+          if(employee[i].status == 'ACTIVE') {
+            if (username == accounts[i].username &&
+                password == accounts[i].password) {
+              print('LOGGING IN AS ${accounts[i].fullName}!');
+              tries = 0;
+              success = true;
+              employeeLogin(accounts[i].email);
+            }
           }
         }
       } else {
@@ -108,7 +110,6 @@ void interfaceLogin(String container){
         print('INCORRECT PASSWORD $tries try/s left!');
       }
     }
-
   } while (tries != 0 && success);
 }
 
