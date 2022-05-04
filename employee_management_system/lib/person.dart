@@ -12,6 +12,7 @@ class Person{
   String? levelOfAccess;
   double leave = 30;
   double requestedLeave = 0;
+  String? request;
 
   @override
   String toString() {
@@ -27,7 +28,8 @@ class Person{
         'status: $status, '
         'levelOfAccess: $levelOfAccess'
         'leave: $leave'
-        'requestedLeave: $requestedLeave}';
+        'requestedLeave: $requestedLeave'
+        'Reason: $request}';
   }
   @override
   setStrings(

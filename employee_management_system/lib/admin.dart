@@ -149,6 +149,7 @@ void interfaceViewEmployee(){
         print('LEAVE/S: ${employee[i].leave}');
         if(employee[i].requestedLeave > 0){
           print('Pending Request for Leave: ${employee[i].requestedLeave}');
+          print('Employee Reason: ${employee[i].request}');
           print('Do you want to Aprroved Request for Leave?[Y]es or [N]o');
           String choice = stdin.readLineSync()!.toUpperCase();
           if (choice == 'Y') {
