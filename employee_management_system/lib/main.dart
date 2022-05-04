@@ -17,7 +17,6 @@ void main(){
   print('TO CONTINUE PRESS ENTER');
   stdin.readLineSync();
 
-
   print('--------EMPLOYEE MANAGEMENT SYSTEM----------');
   mainInterface();
 }

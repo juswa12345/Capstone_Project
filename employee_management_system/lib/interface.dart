@@ -160,10 +160,13 @@ void interfaceRegister(){
         create.createAccount(
             regUsername, regPassword, '$fName $lName', regEmail);
         accounts.add(create);
+        print('SUCCCESS!');
       } else {
         print('Email not found on the Data base!');
       }
     }
+  } else {
+    print('Email not found on the Data base!');
   }
 }
 

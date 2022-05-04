@@ -69,6 +69,7 @@ void interfeceAddEmployee(){
     position = int.parse(stdin.readLineSync()!);
     (position > salary.positions[dept - 1].length) ? print('NOT IN THE CHOICES') : '';
   } while(position > salary.positions[dept - 1].length);
+  print('EMPLOYEE $fName $lName is Added');
   emp.setStrings(fName, lName,  salary.departments[dept - 1], salary.positions[dept - 1].keys.elementAt(position - 1), address,  gender, birthday, email, contactNum, status, lvlOfAccess);
   employee.add(emp);
 }
