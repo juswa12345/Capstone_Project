@@ -25,6 +25,7 @@ String regPassword = '';
 String regEmail = '';
 
 final salary = Salary();
+final admin = Admin();
 void mainInterface(){
   String choice;
   do{
@@ -64,7 +65,6 @@ void selectLogin(){
 void interfaceLogin(String container){
   int tries = 5;
   bool success = false;
-  final admin = Admin();
   do {
     print('---------------------');
     print('|     Username:     |');
@@ -75,24 +75,23 @@ void interfaceLogin(String container){
     print('---------------------');
     String password = stdin.readLineSync()!;
     if(container == 'ADMIN') {
-      for (int i = 1; i < admin.adminAccount.length; i++) {
         if (username == admin.adminAccount[0].values.elementAt(0) &&
             password == admin.adminAccount[0].values.elementAt(1)) {
           print('LOGGING IN AS SUPERADMIN!');
           tries = 0;
           success = true;
           adminMainInterface('SUPERADMIN');
-        } else if (username == admin.adminAccount[i].values.elementAt(0) &&
-            password == admin.adminAccount[i].values.elementAt(1)) {
-          print('LOGGING IN AS ADMIN!');
-          tries = 0;
-          success = true;
-          adminMainInterface('ADMIN');
         } else {
-          tries -= 1;
-          print('INCORRECT PASSWORD $tries try/s left!');
+          for (int i = 1; i < admin.adminAccount.length; i++) {
+            if (username == admin.adminAccount[i].values.elementAt(0) &&
+                password == admin.adminAccount[i].values.elementAt(1)) {
+              print('LOGGING IN AS ADMIN!');
+              tries = 0;
+              success = true;
+              adminMainInterface('ADMIN');
+            }
+          }
         }
-      }
     } else {
       if (accounts.isNotEmpty) {
         for (int i = 0; i < accounts.length; i++) {

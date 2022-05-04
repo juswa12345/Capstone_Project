@@ -30,8 +30,6 @@ class Admin extends Person{
 
 }
 
-final admin = Admin();
-
 void interfeceAddEmployee(){
   final emp = Admin();
   print('-----------ADD EMPLOYEE-----------');
@@ -158,7 +156,6 @@ void interfaceViewEmployee(){
             employee[i].leave = employee[i].leave - employee[i].requestedLeave;
             employee[i].requestedLeave = 0;
           } else if (choice == 'N')  {
-            emp.approveLeave = false;
             employee[i].requestedLeave = 0;
             emp.declineLeave = true;
           } else {
@@ -203,20 +200,19 @@ void editEmployee(){
           employee[i].department = (dept == 0) ? employee[i].department : salary.departments[dept - 1];
           print('POSITION: ${employee[i].position}');
           print('-----------------------------------------');
+          print('Select Position: ');
           index = 1;
-          for(int j = 0; j < employee.length; j++) {
-            if(employee[j].department == employee[i].department) {
-              salary.positions[j].forEach((pos, sal) {
-                print('[$index] $pos');
-                index += 1;
-                dept = j;
-              });
-            }
-          }
+          salary.positions[dept - 1].forEach((pos, sal) {
+            print('[$index] $pos');
+            index+=1;
+          });
           print('[0] Skip');
           print('-----------------------------------------');
-          int position = int.parse(stdin.readLineSync()!);
-          employee[i].position = (position == 0) ? employee[i].position : salary.positions[dept].keys.elementAt(position - 1);
+          do {
+            position = int.parse(stdin.readLineSync()!);
+            (position > salary.positions[dept - 1].length) ? print('NOT IN THE CHOICES') : '';
+          } while(position > salary.positions[dept - 1].length);
+          employee[i].position = (position == 0) ? employee[i].position : salary.positions[dept - 1].keys.elementAt(position - 1);
           print('EMAIL: ${employee[i].email}');
           String email = stdin.readLineSync()!;
           employee[i].email = (email == '') ? employee[i].email : email;
@@ -246,7 +242,6 @@ void editAdminAccounts(){
     String name = stdin.readLineSync()!;
     for(int i = 0; i < employee.length; i++){
       if(name == employee[i].email){
-        print('Do you want to continue changing Level of Access to "ADMIN"?');
         employee[i].levelOfAccess = 'ADMIN';
         print('enter username for this Admin: ');
         String uname = stdin.readLineSync()!;
@@ -254,7 +249,7 @@ void editAdminAccounts(){
           (admin.adminAccount[j].keys.elementAt(0) == uname) ?
             print('username already existed!') : '';
         }
-        print('enter username for this Admin: ');
+        print('enter password for this Admin: ');
         String pass = stdin.readLineSync()!;
         admin.adminAccount.add({'username' : uname, 'password' : pass, 'email' : name});
         print('Successfully added to Admin');

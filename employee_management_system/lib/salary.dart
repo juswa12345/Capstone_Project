@@ -163,10 +163,14 @@ void viewSalary(){
     print('$dpt DEPARTMENT');
     int inner = 1;
     print('---------------------------------');
-    salary.positions[index - 1].forEach((pos, sal) {
-      print('[$inner] $pos : $sal');
-      inner += 1;
-    });
+    if(index > salary.positions.length){
+      print('No Records Yet!');
+    } else {
+      salary.positions[index - 1].forEach((pos, sal) {
+        print('[$inner] $pos : $sal');
+        inner += 1;
+      });
+    }
     print('---------------------------------');
     index += 1;
   });

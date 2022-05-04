@@ -35,10 +35,7 @@ void viewEmployee(String? email){
         print('ADDRESS: ${employee[i].address}');
         if(emp.approveLeave == false) {
             print('LEAVE/S: ${employee[i].leave}');
-            print('LEAVE/S REQUEST: [${employee[i].requestedLeave}] ${(employee[i].requestedLeave > 0)? 'PENDING' : ''}');
-        } else if (employee[i].requestedLeave == 0 && emp.declineLeave == true){
-          print('LEAVE/S: ${employee[i].leave}');
-          print('LEAVE/S REQUEST HAS BEEN DECLINE!');
+            print('LEAVE/S REQUEST: [${employee[i].requestedLeave}] ${(employee[i].requestedLeave > 0)? 'PENDING' : (employee[i].requestedLeave == 0 && emp.declineLeave == true)?'DECLINED' : ''}');
         } else if (emp.approveLeave == true && employee[i].requestedLeave == 0){
           print('LEAVE/S: ${employee[i].leave}');
           print('LEAVE/S REQUEST: APPROVED');
